@@ -1,0 +1,55 @@
+sc_node_not_relation -> concept_musical_characteristic;; 
+sc_node_not_relation -> concept_rock;;
+sc_node_not_relation -> concept_type_of_musical_composition;;
+sc_node_not_relation -> concept_musical_composition;;
+sc_node_not_relation -> concept_musical_form;;
+sc_node_not_relation -> concept_musical_style;;
+
+sc_node_norole_relation -> nrel_attribute;;
+
+//Жанр музыки
+concept_genre_of_music <- sc_node_not_relation;
+
+//идентификаторы
+=> nrel_main_idtf:
+    [жанр музыки] (*<-lang_ru;;*);
+    [genre of music] (*<-lang_en;;*);
+
+//определение
+<- rrel_key_sc_element: ... (*
+    <- definition;;
+    => nrel_main_idtf:
+      [Опр. (жанр музыки)] (* <- lang_ru;; *);;
+    => nrel_using_constants: {
+                concept_type_of_musical_composition;
+		concept_musical_composition;
+		nrel_attribute
+};; 
+<= nrel_sc_text_translation: ... (*
+      -> rrel_example:
+        [Жанр музыки - род музыкального произведения, характеризующийся определенными признаками.] (* <- lang_ru;; *);;
+    *);;
+
+   *);
+
+//утверждение
+<- rrel_key_sc_element: ... (*
+    <- explanation;;
+    => nrel_main_idtf:
+      [Утв.(жанр музыки, музыкальная форма, музыкальный стиль)] (* <- lang_ru;; *);;
+=> nrel_using_constants: {
+       concept_musical_form;
+       concept_musical_style
+};; 
+ <= nrel_sc_text_translation: ... (*
+      -> rrel_example:
+[Музыкальный жанр следует отличать от музыкальной формы и музыкального стиля.](*<-lang_ru;;*);;
+      *);;
+  *);;
+
+
+//принадлежность
+concept_musical_characteristic -> concept_genre_of_music;;
+
+//пример
+concept_genre_of_music -> concept_rock;;
